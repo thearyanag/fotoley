@@ -3,7 +3,7 @@ from django.contrib import admin
 
 from django.contrib.auth.models import User, Group
 # Register your models here.
-from .models import Profile
+from .models import Profile, Post
 
 class ProfileInline(admin.StackedInline):
     model = Profile
@@ -19,4 +19,5 @@ class UserAdmin(admin.ModelAdmin):
 admin.site.unregister(Group)
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
+admin.site.register(Post)
 # admin.site.register(Profile)

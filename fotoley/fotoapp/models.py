@@ -23,3 +23,15 @@ def create_profile(sender, instance ,created ,**kwargs):
         
 post_save.connect(create_profile, sender=User)
 
+class Post(models.Model):
+    user = models.ForeignKey(User,related_name="post", on_delete=models.DO_NOTHING)
+    media = models.FileField(upload_to='media/' , blank=True)
+    caption = models.CharField(max_length=500, blank=True)
+    date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return (
+            f"{self.user} "
+            f"({self.date:%Y-%m-%d %H:%M}): "
+            f"{self.caption[:30]}..."
+        )
+
