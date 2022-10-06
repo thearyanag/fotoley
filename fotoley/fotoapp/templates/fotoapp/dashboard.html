@@ -18,7 +18,11 @@
         {% endif %}
         <p>{{ post.caption }}</p>
         <span class="is-small has-text-grey-light">
-            ({{ post.date }}) by {{ post.user.username }}
+            ({{ post.date }}) by
+            <a href="{% url 'profile_detail' post.user.id %}">
+                {{ post.user.username }}
+            </a>
+
         </span>
     </div>
     {% endfor %}
