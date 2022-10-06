@@ -25,6 +25,8 @@ def profile_detail(request, pk):
 
 def dashboard(request):
     form = PostForm(request.POST, request.FILES or None)
+    print("------------------")
+    print(request.FILES)
     if request.method == "POST":
         if form.is_valid():
             post = form.save(commit=False)

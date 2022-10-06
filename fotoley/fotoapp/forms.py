@@ -5,7 +5,7 @@ class PostForm(forms.ModelForm):
     media = forms.FileField(required=False,
                             widget=forms.ClearableFileInput(
                                 attrs=
-                                {'multiple': True,
+                                {'multiple': False,
                                 "class" : "is-medium file-label" },))
     caption = forms.CharField(required=True,
                 widget=forms.widgets.Textarea(
