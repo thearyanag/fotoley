@@ -7,12 +7,14 @@
     {% for followed in user.profile.follows.all %}
     {% for post in followed.user.post.all %}
     <div class="box">
-        {% if post.media.url.lower|slice:"-3:" == "mp4" %}
-        <video width="320" height="240" controls>
-            <source src="{{post.media.url}}" type="video/mp4">
-        </video>
-        {% else %}
-        <img width="320" height="240" src="{{post.media.url}}" alt="image">
+        {% if post.media %}
+            {% if post.media.url.lower|slice:"-3:" == "mp4" %}
+            <video width="320" height="240" controls>
+                <source src="{{post.media.url}}" type="video/mp4">
+            </video>
+            {% else %}
+            <img width="320" height="240" src="{{post.media.url}}" alt="image">
+            {% endif %}
         {% endif %}
         <p>{{ post.caption }}</p>
         <span class="is-small has-text-grey-light">
@@ -21,6 +23,16 @@
     </div>
     {% endfor %}
     {% endfor %}
+</div>
+
+<div class="column is-one-third">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="button is-info is-fullwidth is-medium mt-5"
+                type="submit">Postttttt
+        </button>
+    </form>
 </div>
 
 {% endblock content %}

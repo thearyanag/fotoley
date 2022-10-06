@@ -30,12 +30,14 @@
     <div class="content">
         {% for post in profile.user.post.all %}
         <div class="box">
-            {% if post.media.url.lower|slice:"-3:" == "mp4"   %}
-                <video width="320" height="240" controls>
-                    <source src="{{post.media.url}}" type="video/mp4">
-                </video>
+            {% if post.media %}
+            {% if post.media.url.lower|slice:"-3:" == "mp4" %}
+            <video width="320" height="240" controls>
+                <source src="{{post.media.url}}" type="video/mp4">
+            </video>
             {% else %}
-                <img width="320" height="240" src="{{post.media.url}}" alt="image">
+            <img width="320" height="240" src="{{post.media.url}}" alt="image">
+            {% endif %}
             {% endif %}
             <p>{{ post.caption }}</p>
             <span class="is-small has-text-grey-light">

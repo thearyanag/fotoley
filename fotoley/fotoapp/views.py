@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Profile
+from .forms import PostForm
 
 # Create your views here.
-def index(request):
-    return render(request, 'base.html')
+# def index(request):
+#     return render(request, 'base.html')
 
 def profile_list(request):
     profiles = Profile.objects.exclude(user=request.user)
@@ -23,4 +24,13 @@ def profile_detail(request, pk):
     return render(request, 'fotoapp/profile_detail.html', {'profile': profile})
 
 def dashboard(request):
-    return render(request, 'fotoapp/dashboard.html')
+    form = PostForm(request.POST, request.FILES or None)
+    if request.method == "POST":
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
+            return redirect('dashboard')
+        else:
+            print(form.errors)
+    return render(request, 'fotoapp/dashboard.html', {'form': form})
