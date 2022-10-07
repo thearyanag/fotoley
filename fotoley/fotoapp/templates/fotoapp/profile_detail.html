@@ -27,6 +27,8 @@
     </div>
 
     <!-- <p>hey</p> -->
+    {% if profile in user.profile.follows.all  %}
+
     <div class="content">
         {% for post in profile.user.post.all %}
         <div class="box">
@@ -46,6 +48,9 @@
         </div>
         {% endfor %}
     </div>
+
+    {%endif%}
+
 
 </div>
 

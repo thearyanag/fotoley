@@ -13,21 +13,26 @@
 
 <body>
     <a href="{% url 'dashboard' %} ">
-    <section class="hero is-small is-info mb-4">
-        <div class="hero-body">
-            <h1 class="title is-1">Fotoley</h1>
-            <p class="subtitle is-4">
-                Your social network
-            </p>
-        </div>
-    </section>
+        <section class="hero is-small is-info mb-4">
+            <div class="hero-body">
+                <h1 class="title is-1">Fotoley</h1>
+                <p class="subtitle is-4">
+                    Your social network
+                </p>
+            </div>
+        </section>
     </a>
     <div class="container">
         <div class="columns">
-
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
             {% block content %}
 
-            {% endblock content %}
+            {% endblock content %}    
+
         </div>
     </div>
 </body>

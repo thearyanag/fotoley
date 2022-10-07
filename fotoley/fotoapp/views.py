@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect
 from .models import Profile
-from .forms import PostForm
+from .forms import PostForm, UserRegisterForm
+from django.shortcuts import render,redirect
+from django.urls import reverse
+from django.contrib.auth import login
 
 # Create your views here.
 # def index(request):
@@ -36,3 +39,16 @@ def dashboard(request):
         else:
             print(form.errors)
     return render(request, 'fotoapp/dashboard.html', {'form': form})
+
+def register(request):
+    if request.method == "GET":
+        return render(
+            request, "registration/register.html",
+            {"form": UserRegisterForm}
+        )
+    elif request.method == "POST":
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect(reverse("dashboard"))

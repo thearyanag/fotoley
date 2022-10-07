@@ -1,5 +1,6 @@
 from django import forms
 from .models import Post
+from django.contrib.auth.forms import UserCreationForm
 
 class PostForm(forms.ModelForm):
     media = forms.FileField(required=False,
@@ -20,3 +21,7 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ('media', 'caption')
         exclude = ('user',)
+
+class UserRegisterForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        fields = UserCreationForm.Meta.fields + ("email",) 

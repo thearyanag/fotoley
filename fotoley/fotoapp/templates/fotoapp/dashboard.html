@@ -29,6 +29,7 @@
     {% endfor %}
 </div>
 
+{% if user.is_authenticated %}
 <div class="block">
     <div class="block">
         <h2 class="title is-4">Add a Post</p>
@@ -43,5 +44,7 @@
         </form>
     </div>
 </div>
+
+{%endif%}
 
 {% endblock content %}
