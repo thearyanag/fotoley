@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-u3d!*imw2+a8k+ie@+*_-sw4dy)+p7=vgb=2l1bl!qoqvom(n8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0',"https://fotoleyintern.herokuapp.com"]
+ALLOWED_HOSTS = ['0.0.0.0',"fotoleyintern.herokuapp.com"]
 
 
 # Application definition
